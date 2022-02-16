@@ -21,12 +21,15 @@ new [RStudio Project](https://rstudio.gvsu.edu/)
 instructor or another group. We will complete this Activity during our
 next class session
 
-## ☑️ Task 2: Complete the RMarkdown File
+## ☑️ Task 2: Choose an RMarkdown File
 
-The `activity05-data-summarization.Rmd` file contains the directions for
-this activity. For the rest of this class period, you will complete the
-RMarkdown document with your neighbor(s). Your instructor will be
-circling and be available to help when needed.
+There are two Rmd file options for this activity:
+`activity08-special-variables.Rmd` or `activity08-strings.Rmd`. Both
+files use the same dataset. The strings file provides more directions
+focusing on dates and parsing strings, while the special variables has a
+“exploratory” feeling to it. For the rest of this class period, you will
+complete the RMarkdown document with your neighbor(s). Your instructor
+will be circling and be available to help when needed.
 
 Note that each person is working in their own repo. We are not worrying
 about collaborating for the time being and instead will be working on
