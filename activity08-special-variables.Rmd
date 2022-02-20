@@ -72,15 +72,53 @@ Some ideas that you might be interested in:
 
 ```{r 10Songs}
 BillRank <- BillSongs %>%
+  drop_na(`weeks on chart`) %>%
   arrange(`weeks on chart`) %>%
   tail(n=10)
+view(BillRank)
 ```
 
+Imagine Dragons Radioactive was first, then I'm Yours Jason Miraz, and then How do
+I live by LeANN Rimes.
+
 - What distinct date did the oldest song(s) leave the charts?
+
+```{r OldSongs}
+class(BillSongs$`chart date`)
+WeekChartvec <- ymd(pull(BillSongs,`chart date`))
+BillSongs$Date <- WeekChartvec
+OldBill <- BillSongs %>%
+  arrange(ymd(Date)) %>%
+  head(n=10)
+```
+
+The oldest songs left in the 1940s in July.
+
 - What songs could have been played at your 16th birthday party?
 That is, which songs that eventually peaked at #1  **entered** the charts within a couple months (before or after) your 16th birthday?
 Assuming you were 16 years old by 2015.
+
+```{r Songsin2013}
+Birthday <- interval(ymd("2013-08-1"),ymd("2013-10-30"))
+BirthdaySong <- BillSongs[BillSongs$Date >= "2013-08-1" & BillSongs$Date <= "2013-10-30", ]
+BirthdaySong %>%
+  filter(`overall peak` == 1)
+```
+ Two Songs on the chart around my 16th birthday that would make it to #1 are Thrift
+ Shop by Macklemore and When I Was Your Man by Bruno Mars.
+
 - Which artist has been **featured** on the most Billboard charting songs?
+
+```{r featured}
+Artist <- BillSongs$artist
+Artistsub <- str_detect(Artist, '.featuring.')
+Artist2 <- tibble(Artist, Artistsub)
+Artist2 %>% 
+  filter(Artistsub == "TRUE") %>%
+  mutate(Featured = )
+```
+
+
 - Which artist has **collaborated** on the most Billboard charting songs?
 - Create some data visualization controlling the order of the character/string variables.
 
