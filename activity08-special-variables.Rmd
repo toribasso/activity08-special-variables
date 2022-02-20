@@ -1,6 +1,6 @@
 ---
 title: "Activity 8"
-author: "Name"
+author: "Viktoria Basso"
 output: github_document
 ---
 
@@ -11,8 +11,12 @@ Load the entirety of the `{tidyverse}`.
 If you wish to work with dates during this activity, you will need to also load `{lubridate}`.
 Be sure to avoid printing out any unnecessary information and give the code chunk a meaningful name.
 
-
-
+```{r LoadingLibraries}
+library(tidyverse)
+library(forcats)
+library(stringr)
+library(lubridate)
+```
 
 Cheatsheets that you might want to add to your collection:
 
@@ -25,8 +29,9 @@ Notice that this file is a tab-delimited file that is stored as a `.txt` file.
 Therefore, you will need to use either `read_delim` with a `delim = ...` argument or (better) `read_tsv` .
 Assign the file to a meaningful object name, be sure to avoid printing any unnecessary information, and give the code chunk a meaningful name.
 
-
-
+```{r  LoadSongs, message=FALSE}
+BillSongs <- read_tsv(here::here("data","billboard_songs.txt"))
+```
 
 These data include information on song popularity.
 In the US, the Billboard Hot 100 is a list that comes out every week, showing the 100 most played songs that week.
@@ -64,6 +69,13 @@ You are encouraged to explore these data as you wish using functions from the pa
 Some ideas that you might be interested in:
 
 - What 10 songs (display title, artist, and week) were on the charts for the longest?
+
+```{r 10Songs}
+BillRank <- BillSongs %>%
+  arrange(`weeks on chart`) %>%
+  tail(n=10)
+```
+
 - What distinct date did the oldest song(s) leave the charts?
 - What songs could have been played at your 16th birthday party?
 That is, which songs that eventually peaked at #1  **entered** the charts within a couple months (before or after) your 16th birthday?
